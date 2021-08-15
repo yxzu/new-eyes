@@ -89,6 +89,9 @@ export default {
       return this.$store.state.setting.systemName
     }
   },
+  created() {
+    sessionStorage.setItem('path',this.$route.path)
+  },
   methods: {
     ...mapMutations('account', ['setUser', 'setPermissions', 'setRoles']),
     onSubmit (e) {
@@ -98,7 +101,8 @@ export default {
           this.logging = true
           const name = this.form.getFieldValue('name')
           const password = this.form.getFieldValue('password')
-          login(name, password).then(this.afterLogin)
+          const group_type = this.form.getFieldValue('group_type') || 'sys'
+          login(name, password,group_type).then(this.afterLogin)
         }
       })
     },

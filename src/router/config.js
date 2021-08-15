@@ -6,9 +6,19 @@ import PageView from '@/layouts/PageView'
 const options = {
   routes: [
     {
-      path: '/login',
+      path: '/loginSys',
       name: '登录页',
-      component: () => import('@/pages/login')
+      component: () => import('@/pages/login/LoginSys')
+    },
+    {
+      path: '/loginStore',
+      name: '登录页',
+      component: () => import('@/pages/login/LoginStore')
+    },
+    {
+      path: '/loginChannel',
+      name: '登录页',
+      component: () => import('@/pages/login/LoginChannel')
     },
     {
       path: '*',
@@ -24,7 +34,7 @@ const options = {
       path: '/',
       name: '首页',
       component: TabsView,
-      redirect: '/login',
+      redirect: sessionStorage.getItem('path'),
       children: [
         {
           path: 'dashboard',
